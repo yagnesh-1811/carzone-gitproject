@@ -27,10 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = 'dashboard'
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'contacts.apps.ContactsConfig',
+    'accounts.apps.AccountsConfig',
     'cars.apps.CarsConfig',
     'pages.apps.PagesConfig',
     'django.contrib.admin',
@@ -40,6 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #Providesrs
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +148,12 @@ MEDIA_URL= '/media/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+
+}
+
+SITE_ID = 1
